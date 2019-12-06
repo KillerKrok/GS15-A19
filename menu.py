@@ -1,4 +1,6 @@
 import iWantItAll
+import diffie
+import hash
 
 end = False
 
@@ -16,6 +18,7 @@ while end == False:
 
     if int(choice) == 1:
         print("Génération d'une clé publique et d'une clé privée en cours ...\n")
+        diffie.diffie_hellman()
     elif int(choice) == 2:
         print("Génération d'un certificat ...\n")
     elif int(choice) == 3:
@@ -34,6 +37,6 @@ while end == False:
         print("Merci d'avoir joué :)")
         end = True
     else:
-        print("Votre choix n'est pas valide. Veuillez réessayer.\n")
+        print("Votre choix n'est pas valide. Veuillez réessayer.\n\n")
 
 
