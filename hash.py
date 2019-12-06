@@ -1,0 +1,5 @@
+
+
+
+def hashing():
+    print("Hashage")
