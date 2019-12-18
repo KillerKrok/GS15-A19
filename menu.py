@@ -1,11 +1,11 @@
 import iWantItAll
 import diffie
-import hash
+from hash import MD5
 
 end = False
 
 while end == False:
-    choice = input("""Bonjour ô maître ! Que souhaitez vous faire aujourd’hui ?
+    choice = input("""\nBonjour ô maître ! Que souhaitez vous faire aujourd’hui ?
 ->1<- Générer des couples de clés publiques / privées.
 ->2<- Générer un certificat.
 ->3<- Vérifier la validité d’un certificat.
@@ -29,6 +29,9 @@ while end == False:
         print("Chiffrement d'un message ...\n")
     elif int(choice) == 6:
         print("Signature d'un message ...\n")
+        signature = MD5()
+        signatureHashee = signature.hashhash("moietmoiseul")
+        print("Signature : " + str(signatureHashee) + "\n")
     elif int(choice) == 7:
         print("Vérification d'une signature ...\n")
     elif int(choice) == 8:
