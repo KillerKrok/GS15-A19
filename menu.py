@@ -18,13 +18,13 @@ while end == False:
 
     if int(choice) == 1:
         print("Génération d'une clé publique et d'une clé privée en cours ...\n")
-        diffie.diffie_hellman()
     elif int(choice) == 2:
         print("Génération d'un certificat ...\n")
     elif int(choice) == 3:
         print("Vérification de la validité d'un certificat ...\n")
     elif int(choice) == 4:
         print("Partage d'une clé secrète ...\n")
+        diffie.diffie_hellman()
     elif int(choice) == 5:
         print("Chiffrement d'un message ...\n")
     elif int(choice) == 6:
