@@ -33,6 +33,7 @@ def diffie_hellman():
     # calcul y1^x2=K
     secret_Kb = (A ** secret_B) % prime
 
+    print("secret de A : " + str(secret_A) + " ; secret de B : " + str(secret_B))
     if secret_Ka == secret_Kb:
         # hashage pour avoir une clé de 64 bits
         secret_hash = hashing(bitarray(bin(secret_Kb)[2:]), 32, 2)

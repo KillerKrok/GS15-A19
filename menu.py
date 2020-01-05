@@ -2,8 +2,10 @@ import iWantItAll
 import diffie
 import dsa
 
-
+# condition d'arrêt du programme
 end = False
+# objet contentant notamment la clé publique et la clé privée de l'utilisateur
+# (il n'est donc pas possible de posséder plusieurs couples de clés) 
 dsa_obj = dsa.DSA()
 
 while end == False:
