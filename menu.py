@@ -1,6 +1,7 @@
 import iWantItAll
 import diffie
-import hash
+from hash import hashing
+
 
 end = False
 
@@ -29,6 +30,12 @@ while end == False:
         print("Chiffrement d'un message ...\n")
     elif int(choice) == 6:
         print("Signature d'un message ...\n")
+        #sign_obj = nmd5.new("Hello world")
+        #signature = sign_obj.hexdigest()
+        chaine = ''.join(format(i, 'b') for i in bytearray("Hello world", encoding ='utf-8'))
+
+        sign = hashing(chaine, 32, 2)
+        print("Signature : " + str(sign) + "\n")
     elif int(choice) == 7:
         print("Vérification d'une signature ...\n")
     elif int(choice) == 8:
@@ -38,5 +45,3 @@ while end == False:
         end = True
     else:
         print("Votre choix n'est pas valide. Veuillez réessayer.\n\n")
-
-
