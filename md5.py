@@ -23,7 +23,6 @@ class MD5(object):
     @classmethod
     def __md5(self, string):
         self._string = string
-        print("string defined as " + str(self._string))
 
         preprocessed_bit_array = self._step_2(self._step_1())
         self._step_3()
@@ -62,7 +61,6 @@ class MD5(object):
         result = step_1_result.copy()
         result.extend(length_bit_array)
 
-        print("result s2 = " + str(result))
         return result
 
     @classmethod
@@ -154,29 +152,13 @@ class MD5(object):
 
     @classmethod
     def _step_5(self):
-        # Convert the buffers to little-endian.
-        #A = struct.unpack("<I", struct.pack(">I", self._buffers[MD5Buffer.A]))[0]
-        #B = struct.unpack("<I", struct.pack(">I", self._buffers[MD5Buffer.B]))[0]
-        #C = struct.unpack("<I", struct.pack(">I", self._buffers[MD5Buffer.C]))[0]
-        #D = struct.unpack("<I", struct.pack(">I", self._buffers[MD5Buffer.D]))[0]
         A = bitarray(bin(self._A)[2:])
         B = bitarray(bin(self._B)[2:])
         C = bitarray(bin(self._C)[2:])
         D = bitarray(bin(self._D)[2:])
 
-        # Output the buffers in lower-case hexadecimal format.
-        bit_array = bitarray()
-        print("s5")
-        #print("A = " + str(self._A))
-        #print("B = " + str(self._B))
-        #print("C = " + str(self._C))
-        #print("D = " + str(self._D))
-        print("A = " + str(A))
-        print("B = " + str(B))
-        print("C = " + str(C))
-        print("D = " + str(D))
-
         #return bit_array
+        bit_array = bitarray()
         bit_array = A + B + C + D
         self._hashed = bit_array
 

@@ -1,5 +1,5 @@
 from random import randint
-from primeGenerator import generation_premier
+from primeGenerator import generation_premier, generation_petit_premier
 from hash import hashing
 from bitarray import bitarray
 
@@ -7,11 +7,15 @@ from bitarray import bitarray
 def diffie_hellman():
     print("Difiie-Hellman")
 
-    #prime = 23
-    prime = generation_premier()
+    #prime = generation_premier()
+
+    # impossible de passer par le générateur, car l'élévation d'un nombre
+    #  à une puissance de 512 bits est trop coûteuse en ressources. 
+    # A défaut, utilisation d'un premier plus petit
+    prime = generation_petit_premier(1000)
 
     # génération de la base
-    base = randint(1, prime - 1)
+    base = generation_petit_premier(prime)
 
     # choix des secrets
     secret_A = randint(2, prime - 1)
@@ -30,8 +34,8 @@ def diffie_hellman():
     secret_Kb = (A ** secret_B) % prime
 
     if secret_Ka == secret_Kb:
-        print("secret avant hash : " + str(secret_Kb))
+        # hashage pour avoir une clé de 64 bits
         secret_hash = hashing(bitarray(bin(secret_Kb)[2:]), 32, 2)
         print("clé partagée crée : " + str(secret_hash))
-    else :
+    else:
         print("/!/ échec de la génération de la clé partagée ...")
