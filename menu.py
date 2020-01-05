@@ -1,11 +1,12 @@
 import iWantItAll
 import diffie
-import hash
+from hash import hashing
+
 
 end = False
 
 while end == False:
-    choice = input("""Bonjour ô maître ! Que souhaitez vous faire aujourd’hui ?
+    choice = input("""\nBonjour ô maître ! Que souhaitez vous faire aujourd’hui ?
 ->1<- Générer des couples de clés publiques / privées.
 ->2<- Générer un certificat.
 ->3<- Vérifier la validité d’un certificat.
@@ -18,17 +19,23 @@ while end == False:
 
     if int(choice) == 1:
         print("Génération d'une clé publique et d'une clé privée en cours ...\n")
-        diffie.diffie_hellman()
     elif int(choice) == 2:
         print("Génération d'un certificat ...\n")
     elif int(choice) == 3:
         print("Vérification de la validité d'un certificat ...\n")
     elif int(choice) == 4:
         print("Partage d'une clé secrète ...\n")
+        diffie.diffie_hellman()
     elif int(choice) == 5:
         print("Chiffrement d'un message ...\n")
     elif int(choice) == 6:
         print("Signature d'un message ...\n")
+        #sign_obj = nmd5.new("Hello world")
+        #signature = sign_obj.hexdigest()
+        chaine = ''.join(format(i, 'b') for i in bytearray("Hello world", encoding ='utf-8'))
+
+        sign = hashing(chaine, 32, 2)
+        print("Signature : " + str(sign) + "\n")
     elif int(choice) == 7:
         print("Vérification d'une signature ...\n")
     elif int(choice) == 8:
@@ -38,5 +45,3 @@ while end == False:
         end = True
     else:
         print("Votre choix n'est pas valide. Veuillez réessayer.\n\n")
-
-
