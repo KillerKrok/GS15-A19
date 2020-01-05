@@ -83,11 +83,12 @@ class DSA():
             h =  hashing(m, 32, 2)
             # passage en integer
             h = bitarray.util.ba2int(h)
+            # calculs de vérification
             u1 = (h*w)%self._q
             u2 = (s1*w)%self._q
             v = ((self._g**u1)*(self._y**u2)%self._p)%self._q
 
-            if v==s1:
+            if v==s1:# signature incorrecte
                 return True
             else:
                 return False

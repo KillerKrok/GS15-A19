@@ -37,16 +37,10 @@ class MD5(object):
 
         # Pad the string with a 1 bit and as many 0 bits required such that
         # the length of the bit array becomes congruent to 448 modulo 512.
-        # Note that padding is always performed, even if the string's bit
-        # length is already conguent to 448 modulo 512, which leads to a
-        # new 512-bit message block.
         bit_array.append(1)
         while bit_array.length() % 512 != 448:
             bit_array.append(0)
 
-        # For the remainder of the MD5 algorithm, all values are in
-        # little endian, so transform the bit array to little endian.
-        #return bitarray(bit_array, endian="little")
         return bit_array
 
     @classmethod
@@ -126,11 +120,7 @@ class MD5(object):
                     s = [6, 10, 15, 21]
                     temp = I(B, C, D)
 
-                # The MD5 algorithm uses modular addition. Note that we need a
-                # temporary variable here. If we would put the result in `A`, then
-                # the expression `A = D` below would overwrite it. We also cannot
-                # move `A = D` lower because the original `D` would already have
-                # been overwritten by the `D = C` expression.
+                # The MD5 algorithm uses modular addition
                 temp = modular_add(temp, X[k])
                 temp = modular_add(temp, T[i])
                 temp = modular_add(temp, A)

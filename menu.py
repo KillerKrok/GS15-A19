@@ -32,9 +32,11 @@ while end == False:
     
     elif int(choice) == 2:
         print("Génération d'un certificat ...\n")
+        # pas implémenté
     
     elif int(choice) == 3:
         print("Vérification de la validité d'un certificat ...\n")
+        # pas implémenté
     
     elif int(choice) == 4:
         print("Partage d'une clé secrète ...\n")
@@ -79,10 +81,11 @@ while end == False:
     
     elif int(choice) == 8:
         iWantItAll.showItAll()
+        # pas implémenté, mais résulte en une combinaison de tout ce qui est au-dessus
     
     elif int(choice) == 0:
         print("Merci d'avoir joué :)")
         end = True
     
     else:
-        print("Votre choix n'est pas valide. Veuillez réessayer.\n\n")
+        print("Votre choix n'est pas valide. Veuillez réessayer.\n")
