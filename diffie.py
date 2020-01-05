@@ -38,7 +38,7 @@ def diffie_hellman():
         # hashage pour avoir une clé de 64 bits
         secret_hash = hashing(bitarray(bin(secret_Kb)[2:]), 32, 2)
         # passage en hexadecimal
-        secret_hash = ''.join(["{:02x}".format(byte) for byte in bytearray(sortie_hash)])
+        secret_hash = ''.join(["{:02x}".format(byte) for byte in bytearray(secret_hash)])
         print("clé partagée crée : " + str(secret_hash))
     else:
         print("/!/ échec de la génération de la clé partagée ...")

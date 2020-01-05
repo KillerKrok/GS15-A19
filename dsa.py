@@ -17,8 +17,6 @@ class DSA():
 
     # générateur d'un couple clé publique/clé privé 
     def generation_cles(self):
-        #L = 600# conseillé : 3072
-        #N = 50# conseillé : 256
         L = 3072
         N = 256
 
