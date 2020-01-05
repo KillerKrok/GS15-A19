@@ -85,9 +85,9 @@ def hashing(chaine, taille_bloc, nb_blocs):
         etat = md5_obj.getmd5hash()
         etat_r = extract(etat, taille_bloc)
     
-    # retour en hexa
-    sortie_hex = bitarray()
+    # retour sous forme d'une bitarray
+    sortie_ba = bitarray()
     for n in sortie:
-        sortie_hex = sortie_hex + n
-    return ''.join(["{:02x}".format(byte) for byte in bytearray(sortie_hex)])
+        sortie_ba = sortie_ba + n
+    return sortie_ba
 

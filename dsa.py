@@ -1,6 +1,7 @@
 from random import randint
 from primeGenerator import generation_premier, generation_petit_premier
 from hash import hashing
+import bitarray.util
 
 # Sur la base de la page Wikipedia de DSA
 class DSA():
@@ -13,14 +14,11 @@ class DSA():
 
     _pubKey = None
     _privKey = None
-    _signature = None
 
     # générateur d'un couple clé publique/clé privé 
     def generation_cles(self):
-        L = 600# conseillé : 3072
-        N = 50# conseillé : 256
-        #L = 3072
-        #N = 256
+        L = 3072
+        N = 256
 
         #définition de p
         #p = generation_premier(L)
@@ -34,7 +32,7 @@ class DSA():
         self._z=int(self._z)
 
         #définition de h et g
-        while self._h<1 and self._g<1:
+        while self._h<1 or self._g<1:
             self._h = randint(2, self._p-2)
             self._g = (self._h**self._z)%self._p
 
@@ -52,15 +50,31 @@ class DSA():
         #définition de s
         s=0
         s1=0
-        """while s1==0:
+        inv_s=0# inverse modulaire de s
+        while s1==0 or inv_s==0:
             s = randint(2, self._q-1)
-            s1 = ((self._g**s)%self._privKey)%self._q"""
-        s = randint(2, self._q-1)
-        s1 = ((self._g**s)%self._privKey)%self._q
+            inv_s = self._mod_inverse(s, self._q)
+            s1 = ((self._g**s)%self._privKey)%self._q
         
         #transformation de la chaine en bits
         m = ''.join(format(i, 'b') for i in bytearray(message, encoding ='utf-8'))
+        # hashage
         h =  hashing(m, 32, 2)
+        # passage en integer
+        h = bitarray.util.ba2int(h)
+        
+        #calcul de s2
+        s2 = (h + s1 * self._privKey)*inv_s
+        
+        # retour de la signature en hexadecimal
+        return [hex(s1), hex(s2)]
 
-        return h
+
+    # calcul de l'inverse modulaire
+    def _mod_inverse(self, x,m):
+        for n in range(m):
+            if n == m-1:
+                return 0
+            elif (x * n) % m == 1:
+                return n
 
