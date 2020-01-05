@@ -1,5 +1,7 @@
 from random import randint
 from primeGenerator import generation_premier
+from hash import hashing
+from bitarray import bitarray
 
 
 def diffie_hellman():
@@ -28,6 +30,8 @@ def diffie_hellman():
     secret_Kb = (A ** secret_B) % prime
 
     if secret_Ka == secret_Kb:
-        print("clé partagée crée : " + str(secret_Kb))
+        print("secret avant hash : " + str(secret_Kb))
+        secret_hash = hashing(bitarray(bin(secret_Kb)[2:]), 32, 2)
+        print("clé partagée crée : " + str(secret_hash))
     else :
         print("/!/ échec de la génération de la clé partagée ...")

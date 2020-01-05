@@ -57,8 +57,8 @@ def test_primalite(n):
 def generation_premier(keysize=512):
     # Cherche un nombre premier
     while True:
-        # génère des nombres trop grand pour les mettre en exposant, donc version plus simple
         # n = randint(2**(keysize-1), 2**(keysize))
+        # génère des nombres trop grand pour les mettre en exposant, donc version plus simple
         n = randint(1, keysize - 1)
         if test_primalite(n):
             return n
