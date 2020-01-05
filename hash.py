@@ -14,10 +14,8 @@ from bitarray import bitarray
 def padding(chaine, rate):
     #calcul du nombre de bits à ajouter
     complement = rate-(len(chaine)%rate)
-    print("complement = " + str(complement))
     for i in list(range(complement)):
         chaine.append(0)
-    print("new chaine = " + str(chaine))
     return chaine
 
 
@@ -25,17 +23,12 @@ def padding(chaine, rate):
 # chaine = chaine d'origine
 # taille = n premiers bits à extraire
 def extract(chaine, taille):
-    print("before extract : " + str(chaine))
     extracted = bitarray()
     extracted = chaine.copy()
 
-    print("length = " + str(extracted.length()) + " and expected is " + str(taille))
     while extracted.length() > taille:
         extracted.pop()
 
-    #for i in list(range(taille)):
-    #    extracted.append(chaine[i])
-    print("extracted = " + str(extracted))
     return extracted
 
 """-----------------------------------------------------------------"""
@@ -45,14 +38,10 @@ def extract(chaine, taille):
 # taille_bloc = taille des blocs sur lesquels on  travail (r)
 # nb_blocs = nombre de blocs de sortie
 def hashing(chaine, taille_bloc, nb_blocs):
-    # conversion de la chaine en bits
-    print("string in bin is : " + str(chaine))
     chaine = bitarray(chaine)
-    print("string in bin is : " + str(chaine))
-    print("taille de la chaine = " + str(len(chaine)))
 
     # initialisation des variables
-    taille_pad = 1024 # c'est b
+    taille_pad = int(taille_bloc * 1.75) # c'est b
 
     etat = bitarray(taille_pad)
     etat.setall(0)
@@ -71,21 +60,16 @@ def hashing(chaine, taille_bloc, nb_blocs):
     for l in pad_chn:
         if k==taille_bloc:
             k=0
-            print("new bloc : " + str(bloc))
             blocs.append(bloc)
             bloc = bitarray()
 
         bloc.append(l)
         k = k+1
-    print("new bloc : " + str(bloc))
     blocs.append(bloc)
-    print("blocs = " + str(blocs))
 
     ## absorption
     for i in blocs:
         temp = etat_r^i
-        print("temp = " + str(temp))
-        print("size before md5 " + str(len(temp)))
         #md5_obj = nmd5.new(temp)
         #etat = md5_obj.digest
         md5_obj = md5.MD5.new(temp)
@@ -101,7 +85,6 @@ def hashing(chaine, taille_bloc, nb_blocs):
         etat = md5_obj.getmd5hash()
         etat_r = extract(etat, taille_bloc)
     
-    print("etat sortie = " + str(sortie))
     # retour en hexa
     sortie_hex = bitarray()
     for n in sortie:

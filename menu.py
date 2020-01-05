@@ -30,10 +30,9 @@ while end == False:
         print("Chiffrement d'un message ...\n")
     elif int(choice) == 6:
         print("Signature d'un message ...\n")
-        #sign_obj = nmd5.new("Hello world")
-        #signature = sign_obj.hexdigest()
-        chaine = ''.join(format(i, 'b') for i in bytearray("Hello world", encoding ='utf-8'))
-
+        chaine = "Hello world"
+        #transformation de la chaine en bits
+        chaine = ''.join(format(i, 'b') for i in bytearray(chaine, encoding ='utf-8'))
         sign = hashing(chaine, 32, 2)
         print("Signature : " + str(sign) + "\n")
     elif int(choice) == 7:

@@ -11,7 +11,7 @@ def rabin_miller(n):
         s = s // 2
         d += 1
 
-    for trials in list(range(5)):  # test la primalite de n 5 fois
+    for k in list(range(5)):  # test la primalite de n 5 fois
         a = randint(2, n-1)
         v = pow(a, s, n)
         if v != 1:
@@ -57,8 +57,14 @@ def test_primalite(n):
 def generation_premier(keysize=512):
     # Cherche un nombre premier
     while True:
-        # n = randint(2**(keysize-1), 2**(keysize))
-        # génère des nombres trop grand pour les mettre en exposant, donc version plus simple
-        n = randint(1, keysize - 1)
+        n = randint(1, 2**(keysize))
         if test_primalite(n):
             return n
+
+def generation_petit_premier(keysize=997):
+    # Cherche un nombre premier
+    while True:
+        n = randint(1, keysize)
+        if test_primalite(n):
+            return n
+
