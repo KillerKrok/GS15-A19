@@ -57,14 +57,14 @@ def test_primalite(n):
 def generation_premier(keysize=512):
     # Cherche un nombre premier
     while True:
-        n = randint(1, 2**(keysize))
+        n = randint(10, 2**(keysize))
         if test_primalite(n):
             return n
 
 def generation_petit_premier(keysize=997):
     # Cherche un nombre premier
     while True:
-        n = randint(1, keysize)
+        n = randint(10, keysize-1)
         if test_primalite(n):
             return n
 
