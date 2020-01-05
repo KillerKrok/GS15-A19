@@ -33,7 +33,6 @@ class MD5(object):
     def _step_1(self):
         # Convert the string to a bit array.
         bit_array = bitarray()
-        #bit_array.frombytes(self._string.encode("utf-8"))
         bit_array = self._string
 
         # Pad the string with a 1 bit and as many 0 bits required such that
