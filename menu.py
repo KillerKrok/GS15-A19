@@ -1,6 +1,7 @@
 import iWantItAll
 import diffie
 import dsa
+import chiffrement
 
 # condition d'arrêt du programme
 end = False
@@ -40,7 +41,13 @@ while end == False:
         diffie.diffie_hellman()
     
     elif int(choice) == 5:
-        print("Chiffrement d'un message ...\n")
+        chiffrage = input("""\n Taper ->1<- pour un chiffrement ECB
+Taper ->2<- pour un chiffrement CBC
+Taper ->3<- pour un chiffrement ECB \n""")
+        type_message = input("""\n Taper ->1<- pour chiffrer un message
+Taper ->2<- pour chiffrer un fichier \n""")
+
+		camelia(chiffrage, type_message)
     
     elif int(choice) == 6:
         chaine = input("Entrez le message à signer \n")
