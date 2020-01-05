@@ -678,19 +678,19 @@ k11d = k8
 k10d = k9
 ke4d = ke1
 ke3d = ke2
-        D1 = D1 ^ function_F(D2, k14) #round 14
-        D2 = D2 ^ function_F(D1, k15) #round 15
-        D1 = D1 ^ function_F(D2, k16) #round 16
-        D2 = D2 ^ function_F(D1, k17) #round 17
-        D1 = D1 ^ function_F(D2, k18) #round 18
-        D2 = D2 ^ kw3
-        D1 = D1 ^ kw4
+D1 = D1 ^ function_F(D2, k14) #round 14
+D2 = D2 ^ function_F(D1, k15) #round 15
+D1 = D1 ^ function_F(D2, k16) #round 16
+D2 = D2 ^ function_F(D1, k17) #round 17
+D1 = D1 ^ function_F(D2, k18) #round 18
+D2 = D2 ^ kw3
+D1 = D1 ^ kw4
 
-        ciphered = (D2 << 64) | D1
-        encrypted_data(ciphered)
-        message_ciphered =  ''.join(map(chr, ciphered_list))
-        print("Votre message est chiffré est s'écrit : ", message_ciphered)
-        value_CBC = 0
+ciphered = (D2 << 64) | D1
+encrypted_data(ciphered)
+message_ciphered =  ''.join(map(chr, ciphered_list))
+print("Votre message est chiffré est s'écrit : ", message_ciphered)
+value_CBC = 0
         
 
 def encryption_PCBC(block):

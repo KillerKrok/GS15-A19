@@ -66,8 +66,32 @@ class DSA():
         #calcul de s2
         s2 = (h + s1 * self._privKey)*inv_s
         
-        # retour de la signature en hexadecimal
-        return [hex(s1), hex(s2)]
+        # retour de la signature
+        return [s1, s2]
+
+
+    def verif_signature(self, s1, s2, message):
+        # si s1 et s2 sont incohérents
+        if 0<s1 or s1<self._q or 0<s2 or s2<self._q:
+            return False
+
+        else:
+            w = self._mod_inverse(s2, self._q)
+            #transformation de la chaine en bits
+            m = ''.join(format(i, 'b') for i in bytearray(message, encoding ='utf-8'))
+            # hashage
+            h =  hashing(m, 32, 2)
+            # passage en integer
+            h = bitarray.util.ba2int(h)
+            u1 = (h*w)%self._q
+            u2 = (s1*w)%self._q
+            v = ((self._g**u1)*(self._y**u2)%self._p)%self._q
+
+            if v==s1:
+                return True
+            else:
+                return False
+
 
 
     # calcul de l'inverse modulaire

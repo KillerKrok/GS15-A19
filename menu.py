@@ -42,13 +42,13 @@ while end == False:
     
     elif int(choice) == 5:
         chiffrage = input("""\n Taper ->1<- pour un chiffrement ECB
-Taper ->2<- pour un chiffrement CBC
-Taper ->3<- pour un chiffrement ECB \n""")
+    Taper ->2<- pour un chiffrement CBC
+    Taper ->3<- pour un chiffrement ECB \n""")
         type_message = input("""\n Taper ->1<- pour chiffrer un message
-Taper ->2<- pour chiffrer un fichier \n""")
+    Taper ->2<- pour chiffrer un fichier \n""")
 
-		camelia(chiffrage, type_message)
-    
+        chiffrement.camelia(chiffrage, type_message)
+        
     elif int(choice) == 6:
         chaine = input("Entrez le message à signer \n")
         #si aucun couple de clé n'a déjà été généré
@@ -59,9 +59,23 @@ Taper ->2<- pour chiffrer un fichier \n""")
         print("Génération de la signature ...")
         sign = dsa_obj.generation_signature(chaine)
         print("Signature du message : " + str(sign) + "\n")
+        sign[0] = sign[0]
+        sign[1] = sign[1]
+        print("Signature en hexadécimal : " + str(sign) + "\n")
     
     elif int(choice) == 7:
         print("Vérification d'une signature ...\n")
+        if(dsa_obj._pubKey == None):
+            print("/!/ Aucun couple de clé publique et clé privé généré. Ce message n'a pas été adressé par cet utilisateur !")
+        else:
+            message = input("Entrez le message signé ")
+            s1 = input("Entrez la première partie de la signature ")
+            s2 = input("Entrez la deuxième partie de la signature ")
+            verif = dsa_obj.verif_signature(int(s1), int(s2), message)
+            if verif:
+                print("Signature correcte !")
+            else:
+                print("/!/ Signature incorrecte !")
     
     elif int(choice) == 8:
         iWantItAll.showItAll()
